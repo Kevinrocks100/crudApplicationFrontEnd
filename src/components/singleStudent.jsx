@@ -8,7 +8,7 @@ export default function singleStudent(props) {
         <p>Email: {props.singleStudent.student.email}</p>
         <img src={props.singleStudent.student.imageUrl} alt={props.singleStudent.student.id} />
         <p>GPA: {props.singleStudent.student.gpa}</p>
-        <p>campusId: {props.singleStudent.student.campusId}</p>
+        <p>campusId: {props.singleStudent.student.campus.name}</p>
     </div>
   ) : (
     <div>

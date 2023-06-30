@@ -5,6 +5,7 @@ import Home from "../pages/Home";
 import Students from "../pages/students";
 import Student from "../pages/student";
 import Campuses from "../pages/campuses";
+import Campus from "../pages/campus"
 import { LinkContainer } from 'react-router-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -33,6 +34,7 @@ function App() {
         <Route path="/students" element={<Students />} />
         <Route path="/students/:id" element={<Student />} />
         <Route path="/campuses" element={<Campuses />} />
+        <Route path="/campuses/:id" element={<Campus />} />
       </Routes>
     </Router>
   );
