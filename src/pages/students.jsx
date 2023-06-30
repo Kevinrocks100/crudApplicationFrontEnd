@@ -18,7 +18,7 @@ const Students = () => {
 
   return ( 
     <div>
-      <h1>Shoes Page</h1>
+      <h1>Students Page</h1>
       <ListStudentName list={allStudents} />
     </div>
   );
