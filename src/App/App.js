@@ -3,6 +3,7 @@ import "./App.css";
 // Pages
 import Home from "../pages/Home";
 import Students from "../pages/students";
+import Student from "../pages/student";
 import Campuses from "../pages/campuses";
 import { LinkContainer } from 'react-router-bootstrap';
 import Nav from 'react-bootstrap/Nav';
@@ -30,6 +31,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/students" element={<Students />} />
+        <Route path="/students/:id" element={<Student />} />
         <Route path="/campuses" element={<Campuses />} />
       </Routes>
     </Router>
