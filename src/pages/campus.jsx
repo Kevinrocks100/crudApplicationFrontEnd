@@ -5,22 +5,23 @@ import SingleCampus from "../components/singleCampus";
 import { useParams } from 'react-router-dom'
 
 const Campus = () => {
-  const campus = useSelector((state) => state.campus);
+  const campus = useSelector((state) => state.campus.campus); 
   const dispatch = useDispatch();
   const { id } = useParams();
   const fetchSingleCampus = () => {
-    console.log('RUNNING DISPATCH FROM FETCHALLCAMPUSES')
     return dispatch(fetchSingleCampusThunk(id));
   };
 
   useEffect(() => {
+    console.log('FETCH SINGLE CAMPUS FIRING IN USEEFFECT')
+    
     fetchSingleCampus();
-  }, [id]);
-
+  }, [id]); 
+  
   return ( 
     <div>
-      <h1>Students Page</h1>
-      <SingleCampus singleCampus={campus} />
+      <h1>Campus Page</h1>
+      <SingleCampus singleCampus={campus}/>
     </div>
   );
 };
