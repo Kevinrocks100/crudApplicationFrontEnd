@@ -11,6 +11,8 @@ const campusesReducer = (state = INITIAL_CAMPUSES_STATE, { type, payload }) => {
       return { ...state, allCampuses: payload };
     case CampusesActionType.FETCHING_SINGLE_CAMPUS:
       return { ...state, campus: payload };
+    case CampusesActionType.CREATING_CAMPUS:
+      return { ...state, allCampuses: [...state.allCampuses, payload] };
     default:
       return state;
   }

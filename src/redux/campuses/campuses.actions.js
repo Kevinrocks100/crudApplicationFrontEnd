@@ -18,6 +18,13 @@ export const fetchSingleCampus = (payload)=>{
   };
 };
 
+export const createCampus = (payload) => {
+  return {
+      type: CampusesActionType.CREATING_CAMPUS,
+      payload: payload
+  }
+}
+
 export const fetchAllCampusesThunk = () => {
   return async (dispatch) => {
     try {
@@ -43,3 +50,14 @@ export const fetchSingleCampusThunk = (campusId) =>{
       }
   };
 };
+
+export const createCampusThunk = (campus) => {
+  return async (dispatch) => {
+      try {
+          const response = await axios.post("http://localhost:8080/api/campuses/add", campus);
+          dispatch(createCampus(response.data));
+      } catch (error) {
+          console.log(error); 
+      }
+  }
+}
