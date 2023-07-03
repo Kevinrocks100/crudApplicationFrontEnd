@@ -4,17 +4,17 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function singleCampus({ singleCampus }) {
+export default function singleCampus({ singleCampus, students }) {
   return singleCampus ? (
     <div>
-      <h2>Campuse Details</h2>
-      <p>Name: {singleCampus.name}</p>
-      <img src={singleCampus.imageUrl} alt={singleCampus.id} />
-      <p>Address: {singleCampus.address}</p>
-      <p>Description: {singleCampus.description}</p>
-      <div>
+        <h2>Campuse Details</h2>
+        <p>Name: {singleCampus.name}</p>
+        <img src={singleCampus.imageUrl} alt={singleCampus.id} />
+        <p>Address: {singleCampus.address}</p>
+        <p>Description: {singleCampus.description}</p>
+        <div>
         {
-          singleCampus.students.map((student) => {
+          students.map((student) => {
             return (
               <div key={student.id}>
                 <LinkContainer to={`/students/${student.id}`}>
@@ -24,15 +24,15 @@ export default function singleCampus({ singleCampus }) {
             );
           })
         }
-      </div>
+        </div>
     </div>
   ) : (
     <div>
-      <p>Name: {singleCampus.name}</p>
-      <img src={singleCampus.imageUrl} alt={singleCampus.id} />
-      <p>Address: {singleCampus.address}</p>
-      <p>Description: {singleCampus.description}</p>
-      <p>Please Add Students to Campus!</p>
+        <p>Name: {singleCampus.name}</p>
+        <img src={singleCampus.imageUrl} alt={singleCampus.id} />
+        <p>Address: {singleCampus.address}</p>
+        <p>Description: {singleCampus.description}</p>
+        <p>Please Add Students to Campus!</p>
     </div>
   );
 }

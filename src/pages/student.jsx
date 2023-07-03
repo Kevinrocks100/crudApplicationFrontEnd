@@ -5,7 +5,7 @@ import SingleStudent from "../components/singleStudent";
 import { useParams } from 'react-router-dom'
 
 const Student = () => {
-  const student = useSelector((state) => state.student);
+  const student = useSelector((state) => state.student.student);
   const dispatch = useDispatch();
   const { id } = useParams();
   const fetchSingleStudent = () => {
