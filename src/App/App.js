@@ -4,6 +4,7 @@ import "./App.css";
 import Home from "../pages/Home";
 import Students from "../pages/students";
 import Student from "../pages/student";
+import AddStudent from "../pages/addStudent"
 import Campuses from "../pages/campuses";
 import Campus from "../pages/campus"
 import AddCampus from "../pages/addCampus"
@@ -34,6 +35,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/students" element={<Students />} />
         <Route path="/students/:id" element={<Student />} />
+        <Route path="/students/add" element={<AddStudent />} />
         <Route path="/campuses" element={<Campuses />} />
         <Route path="/campuses/:id" element={<Campus />} />
         <Route path="/campuses/add" element={<AddCampus />} />

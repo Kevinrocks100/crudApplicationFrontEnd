@@ -18,6 +18,13 @@ export const fetchSingleStudent = (payload)=>{
   };
 };
 
+export const addStudent = (payload) => {
+  return {
+      type: StudentsActionType.CREATING_STUDENT,
+      payload: payload
+  }
+}
+
 export const fetchAllStudentsThunk = () => {
   return async (dispatch) => {
     try {
@@ -43,3 +50,14 @@ export const fetchSingleStudentThunk = (studentId) =>{
       }
   };
 };
+
+export const addStudentThunk = (student) => {
+  return async (dispatch) => {
+      try {
+          const response = await axios.post("http://localhost:8080/api/students/add", student);
+          dispatch(addStudent(response.data));
+      } catch (error) {
+          console.log(error); 
+      }
+  }
+}
