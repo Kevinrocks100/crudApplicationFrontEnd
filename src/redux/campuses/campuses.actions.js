@@ -25,6 +25,13 @@ export const createCampus = (payload) => {
   }
 }
 
+export const deleteCampus = (payload) => {
+  return {
+    type: CampusesActionType.DELETING_CAMPUS,
+    payload: payload,
+  };
+};
+
 export const fetchAllCampusesThunk = () => {
   return async (dispatch) => {
     try {
@@ -61,3 +68,14 @@ export const createCampusThunk = (campus) => {
       }
   }
 }
+
+export const deleteCampusThunk = (campusId) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete(`http://localhost:8080/api/campuses/delete/${campusId}`);
+      dispatch(deleteCampus(campusId));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};

@@ -13,6 +13,8 @@ const campusesReducer = (state = INITIAL_CAMPUSES_STATE, { type, payload }) => {
       return { ...state, campus: payload };
     case CampusesActionType.CREATING_CAMPUS:
       return { ...state, allCampuses: [...state.allCampuses, payload] };
+    case CampusesActionType.DELETING_CAMPUS:
+      return { ...state, allCampuses: state.allCampuses.filter((campus) => campus.id !== payload )}; 
     default:
       return state;
   }

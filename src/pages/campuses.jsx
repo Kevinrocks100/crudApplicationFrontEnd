@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllCampusesThunk } from "../redux/campuses/campuses.actions";
-import ListCampusName from "../components/listCampusName";
+import ListAllCampuses from "../components/listAllCampuses";
 
 const Campuses = () => {
   const allCampuses = useSelector((state) => state.campus.allCampuses);
@@ -19,7 +19,7 @@ const Campuses = () => {
   return ( 
     <div>
       <h1>Campuses Page</h1>
-      <ListCampusName list={allCampuses} />
+      <ListAllCampuses allCampuses={allCampuses} />
     </div>
   );
 };
