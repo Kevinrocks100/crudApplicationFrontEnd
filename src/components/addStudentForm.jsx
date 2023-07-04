@@ -12,9 +12,11 @@ const AddStudentForm = () => {
     firstName: "",
     lastName: "",
     email: "",
-    imageUrl: "",
-    gpa: 0,
+    imageUrl: "hshdjhf",
+    gpa: null,
   });
+
+  const [validationErrors, setValidationErrors] = useState({});
 
   const handleChange = (e) => {
     setFormData({
@@ -25,8 +27,32 @@ const AddStudentForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addStudentThunk(formData));
-    navigate('/students');
+    const errors = validateForm();
+    if (Object.keys(errors).length === 0) {
+      dispatch(addStudentThunk(formData));
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: ""
+      });
+      navigate('/students');
+    } else {
+      setValidationErrors(errors);
+    }
+  };
+
+  const validateForm = () => {
+    const errors = {};
+    if (!formData.firstName.trim()) {
+      errors.firstName = "Student's first name is required";
+    }
+    if (!formData.lastName.trim()) {
+      errors.lastName = "Student's last name is required";
+    }
+    if (!formData.email.trim()) {
+      errors.email = "Student's email is required";
+    }
+    return errors;
   };
 
   return (
@@ -40,7 +66,11 @@ const AddStudentForm = () => {
             name="firstName"
             value={formData.firstName}
             onChange={handleChange}
+            isInvalid={validationErrors.firstName}
           />
+          <Form.Control.Feedback type="invalid">
+            {validationErrors.firstName}
+          </Form.Control.Feedback>
         </Form.Group>
         <Form.Group controlId="lastName">
           <Form.Label>Last Name</Form.Label>
@@ -49,7 +79,11 @@ const AddStudentForm = () => {
             name="lastName"
             value={formData.lastName}
             onChange={handleChange}
+            isInvalid={validationErrors.lastName}
           />
+          <Form.Control.Feedback type="invalid">
+            {validationErrors.lastName}
+          </Form.Control.Feedback>
         </Form.Group>
         <Form.Group controlId="email">
           <Form.Label>Email</Form.Label>
@@ -58,26 +92,11 @@ const AddStudentForm = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
+            isInvalid={validationErrors.email}
           />
-        </Form.Group>
-        <Form.Group controlId="imageUrl">
-          <Form.Label>Image URL</Form.Label>
-          <Form.Control
-            type="text"
-            name="imageUrl"
-            value={formData.imageUrl}
-            onChange={handleChange}
-          />
-        </Form.Group>
-        <Form.Group controlId="gpa">
-          <Form.Label>GPA</Form.Label>
-          <Form.Control
-            type="number"
-            step="0.1"
-            name="gpa"
-            value={formData.gpa}
-            onChange={handleChange}
-          />
+          <Form.Control.Feedback type="invalid">
+            {validationErrors.email}
+          </Form.Control.Feedback>
         </Form.Group>
         <Button variant="primary" type="submit">
           Add Student
