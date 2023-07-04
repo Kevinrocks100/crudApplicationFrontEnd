@@ -5,7 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function singleCampus({ singleCampus, students }) {
-  return singleCampus ? (
+  return students.length !== 0 ? (
     <div>
         <h2>Campuse Details</h2>
         <p>Name: {singleCampus.name}</p>
