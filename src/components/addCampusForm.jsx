@@ -5,74 +5,88 @@ import { Form, Button } from "react-bootstrap";
 import { createCampusThunk } from "../redux/campuses/campuses.actions";
 
 const AddCampusForm = () => {
-    const navigate = useNavigate();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
-      name: "",
-      imageUrl: "",
-      address: "",
-      description: ""
+        name: "",
+        imageUrl: "jhshdf", 
+        address: "",
+        description: "shd"
     });
-    
+
+    const [validationErrors, setValidationErrors] = useState({});
+
     const handleChange = (e) => {
-      setFormData({
-        ...formData,
-        [e.target.name]: e.target.value
-      });
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
     };
-  
+
     const handleSubmit = (e) => {
-      e.preventDefault();
-      dispatch(createCampusThunk(formData)); 
-      navigate('/campuses');
+        e.preventDefault();
+        const errors = validateForm();
+        if (Object.keys(errors).length === 0) {
+            dispatch(createCampusThunk(formData));
+            setFormData({
+                name: "",
+                address: "",
+            });
+            setValidationErrors({});
+            navigate('/campuses');
+        } else {
+            setValidationErrors(errors);
+        }
     };
-    // const newCampus = useSelector((state) => state.campus.campus);
+
+    const validateForm = () => {
+        const errors = {};
+        if (!formData.name.trim()) {
+            errors.name = "Campus name is required";
+        }
+        if (!formData.address.trim()) {
+            errors.address = "Campus address is required";
+        }
+        return errors;
+    };
+
     return (
         <div>
-            <h1>Hi! this is Add Campus page</h1>
+            <h2>Add New Campus</h2>
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="name">
-                    <Form.Label>Name</Form.Label>
+                    <Form.Label>Campus Name</Form.Label>
                     <Form.Control
                         type="text"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
+                        isInvalid={validationErrors.name}
                     />
-                </Form.Group>
-                <Form.Group controlId="imageUrl">
-                    <Form.Label>Image URL</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="imageUrl"
-                        value={formData.imageUrl}
-                        onChange={handleChange}
-                    />
+                    <Form.Control.Feedback type="invalid">
+                        {validationErrors.name}
+                    </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group controlId="address">
-                    <Form.Label>Address</Form.Label>
+                    <Form.Label>Campus Address</Form.Label>
                     <Form.Control
                         type="text"
                         name="address"
                         value={formData.address}
                         onChange={handleChange}
+                        isInvalid={validationErrors.address}
                     />
-                </Form.Group>
-                <Form.Group controlId="description">
-                    <Form.Label>Description</Form.Label>
-                    <Form.Control
-                        as="textarea"
-                        rows={3}
-                        name="description"
-                        value={formData.description}
-                        onChange={handleChange}
-                    />
+                    <Form.Control.Feedback type="invalid">
+                        {validationErrors.address}
+                    </Form.Control.Feedback>
                 </Form.Group>
                 <Button variant="primary" type="submit">
-                    Submit
+                    Add Campus
                 </Button>
             </Form>
         </div>
-    )
-}
+    );
+};
+
 export default AddCampusForm;
