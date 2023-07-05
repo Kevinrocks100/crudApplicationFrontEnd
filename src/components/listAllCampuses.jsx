@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCampusThunk } from "../redux/campuses/campuses.actions";
+import  AddStudentPage  from "../pages/addCampus"
 import { useParams } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap';
 import Nav from 'react-bootstrap/Nav';
@@ -36,16 +37,12 @@ export default function ListAllCampuses({ allCampuses }) {
             </Card.Body>
           </Card>
         </div>
-        // <div key={campus.id}>
-        //   <LinkContainer to={`/campuses/${campus.id}`}>
-        //     <Nav.Link><h1>{campus.name}</h1></Nav.Link>
-        //   </LinkContainer>
-        //   <img src={campus.imageUrl} alt={campus.name} />
-        // </div>
       );
     })
   ) : (
-    <h1>There are no campuses registered in this database!</h1>
-
+    <div>
+      <p>There are no campuses registered in this database!</p>
+      <Button variant="primary"><LinkContainer to="/campuses/add"><Nav.Link>Add Campus</Nav.Link></LinkContainer></Button>
+    </div>
   );
 }

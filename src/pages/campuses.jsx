@@ -7,18 +7,16 @@ const Campuses = () => {
   const allCampuses = useSelector((state) => state.campus.allCampuses);
   const dispatch = useDispatch();
   const fetchAllCampuses = () => {
-    console.log('RUNNING DISPATCH FROM FETCHALLCAMPUSES')
     return dispatch(fetchAllCampusesThunk());
   };
 
   useEffect(() => {
-    console.log('FETCH ALL CAMPUSES FIRING IN USEEFFECT')
     fetchAllCampuses();
   }, []);
 
   return ( 
     <div>
-      <h1>Campuses Page</h1>
+      <h1>All Campuses</h1>
       <ListAllCampuses allCampuses={allCampuses} />
     </div>
   );
