@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllStudentsThunk } from "../redux/students/students.actions";
-import ListStudentName from "../components/listStudentName";
+import ListAllStudents from "../components/listAllStudents";
 import { LinkContainer } from 'react-router-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -22,8 +22,8 @@ const Students = () => {
 
   return ( 
     <div>
-      <h1>Students Page</h1>
-      <ListStudentName list={allStudents} />
+      <h1>All Students</h1>
+      <ListAllStudents listStudents={allStudents} />
     </div>
   );
 };
