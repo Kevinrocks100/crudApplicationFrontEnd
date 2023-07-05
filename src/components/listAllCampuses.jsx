@@ -21,7 +21,6 @@ export default function ListAllCampuses({ allCampuses }) {
   const handleDelete = (campusId) => {
     deleteCampus(campusId);
   };
-
   return allCampuses.length !== 0 ? (
     <Row>
       {allCampuses.map((campus) => (
@@ -35,15 +34,20 @@ export default function ListAllCampuses({ allCampuses }) {
                 </LinkContainer>
               </Card.Title>
               <Card.Text>
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+                <p>{campus.students.length} students</p>
               </Card.Text>
-              <Button
-                variant="primary"
-                onClick={() => handleDelete(campus.id)}
-              >
-                Delete
-              </Button>
+              <Row>
+                <Col xs={12} md={6}>
+                  <Button variant="primary">
+                    <LinkContainer to={`/campuses/edit/${campus.id}`}>
+                      <Nav.Link>Edit</Nav.Link>
+                    </LinkContainer>
+                  </Button>
+                </Col>
+                <Col xs={12} md={6}>
+                  <Button variant="primary" onClick={() => handleDelete(campus.id)}>Delete</Button>
+                </Col>
+              </Row>
             </Card.Body>
           </Card>
         </Col>
@@ -52,11 +56,6 @@ export default function ListAllCampuses({ allCampuses }) {
   ) : (
     <div>
       <p>There are no campuses registered in this database!</p>
-      <Button variant="primary">
-        <LinkContainer to="/campuses/add">
-          <Nav.Link>Add Campus</Nav.Link>
-        </LinkContainer>
-      </Button>
     </div>
   );
 }
