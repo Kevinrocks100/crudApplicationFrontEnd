@@ -19,11 +19,11 @@ const Campus = () => {
   };
 
   useEffect(() => {
-    console.log('FETCH SINGLE CAMPUS FIRING IN USEEFFECT')
     fetchAllStudents();
     fetchSingleCampus();
   }, [id]);
   const campusStudents = students.filter(student => student.campusId===parseInt(id));
+  console.log(campus.students[0]); 
   return ( 
     <div>
       <h1>Campus Page</h1>
