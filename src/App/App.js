@@ -8,6 +8,7 @@ import AddStudent from "../pages/addStudent"
 import Campuses from "../pages/campuses";
 import Campus from "../pages/campus"
 import AddCampus from "../pages/addCampus"
+import EditCampus from "../pages/editCampus";
 import { LinkContainer } from 'react-router-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -39,6 +40,7 @@ function App() {
         <Route path="/campuses" element={<Campuses />} />
         <Route path="/campuses/:id" element={<Campus />} />
         <Route path="/campuses/add" element={<AddCampus />} />
+        <Route path="/campuses/edit/:id" element={<EditCampus />} />
       </Routes>
     </Router>
   );

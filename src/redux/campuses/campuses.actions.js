@@ -25,6 +25,13 @@ export const createCampus = (payload) => {
   }
 }
 
+export const editCampus = (payload) => {
+  return {
+    type: CampusesActionType.EDITING_CAMPUS,
+    payload: payload,
+  };
+};
+
 export const deleteCampus = (payload) => {
   return {
     type: CampusesActionType.DELETING_CAMPUS,
@@ -68,6 +75,17 @@ export const createCampusThunk = (campus) => {
       }
   }
 }
+
+export const editCampusThunk = (campus) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.put(`http://localhost:8080/api/campuses/edit/${campus.id}`, campus);
+      dispatch(editCampus(response.data));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
 
 export const deleteCampusThunk = (campusId) => {
   return async (dispatch) => {
