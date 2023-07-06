@@ -25,6 +25,13 @@ export const addStudent = (payload) => {
   }
 }
 
+export const editStudent = (payload) => {
+  return {
+    type: StudentsActionType.EDITING_STUDENT,
+    payload: payload,
+  };
+};
+
 export const deleteStudent = (payload) => {
   return {
     type: StudentsActionType.DELETING_STUDENT,
@@ -68,6 +75,17 @@ export const addStudentThunk = (student) => {
       }
   }
 }
+
+export const editStudentThunk = (student) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.put(`http://localhost:8080/api/students/edit/${student.id}`, student);
+      dispatch(editStudent(response.data));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
 
 export const deleteStudentThunk = (studentId) => {
   return async (dispatch) => {

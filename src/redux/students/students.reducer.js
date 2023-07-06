@@ -13,6 +13,8 @@ const studentReducer = (state = INITIAL_STUDENTS_STATE, { type, payload }) => {
       return { ...state, student: payload}
     case StudentsActionType.CREATING_STUDENT:
       return { ...state, allStudents: [...state.allStudents, payload] }; 
+    case StudentsActionType.EDITING_STUDENT:
+      return { ...state, allCampuses: state.allCampuses.map((campus) => campus.id === payload.id ? payload : campus), campus: payload, isLoading: false,};
     case StudentsActionType.DELETING_STUDENT:
       return { ...state, allStudents: state.allStudents.filter((student) => student.id !== payload )}; 
     default:
