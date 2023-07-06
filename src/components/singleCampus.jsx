@@ -61,11 +61,17 @@ export default function SingleCampus({ singleCampus, students }) {
     </div>
   ) : (
     <div>
-      <p>Name: {singleCampus.name}</p>
+      <h1>{singleCampus.name}</h1>
       <img src={singleCampus.imageUrl} alt={singleCampus.id} />
-      <p>Address: {singleCampus.address}</p>
-      <p>Description: {singleCampus.description}</p>
+      <h3>{singleCampus.address}</h3>
+      <p>{singleCampus.description}</p>
+      <h2>Students on Campus</h2>
       <p>Please Add Students to Campus!</p>
+      <Button variant="primary">
+        <LinkContainer to="/campuses/add">
+          <Nav.Link>Add Campus</Nav.Link>
+        </LinkContainer>
+      </Button>
     </div>
   );
 }

@@ -34,7 +34,7 @@ export default function ListAllCampuses({ allCampuses }) {
                 </LinkContainer>
               </Card.Title>
               <Card.Text>
-                <p>{campus.students.length} students</p>
+                {/* <p>{campus.students.length} students</p> */}
               </Card.Text>
               <Row>
                 <Col xs={12} md={6}>
