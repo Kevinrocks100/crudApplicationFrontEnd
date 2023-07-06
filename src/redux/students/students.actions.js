@@ -43,7 +43,7 @@ export const fetchAllStudentsThunk = () => {
   return async (dispatch) => {
     try {
       console.log("FETCHALLSTUDENTSTHUNK IS FIRING");
-      const response = await axios.get("http://localhost:8080/api/students");
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/students`);
       console.log("FETCHALLSTUDENTSTHUNK COMPLETED"); 
       dispatch(fetchAllStudents(response.data));
     } catch (error) {
@@ -56,7 +56,7 @@ export const fetchSingleStudentThunk = (studentId) =>{
   return async (dispatch)=>{
       try {
           console.log("FETCHSINGLESTUDENTTHUNK IS FIRING");
-          const response = await axios.get(`http://localhost:8080/api/students/${studentId}`);
+          const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/students/${studentId}`);
           console.log("FETCHSINGLESTUDENTTHUNK COMPLETED");
           dispatch(fetchSingleStudent(response.data));
       } catch (error) {
@@ -68,7 +68,7 @@ export const fetchSingleStudentThunk = (studentId) =>{
 export const addStudentThunk = (student) => {
   return async (dispatch) => {
       try {
-          const response = await axios.post("http://localhost:8080/api/students/add", student);
+          const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/students/add`, student);
           dispatch(addStudent(response.data));
       } catch (error) {
           console.log(error); 
@@ -79,7 +79,7 @@ export const addStudentThunk = (student) => {
 export const editStudentThunk = (student) => {
   return async (dispatch) => {
     try {
-      const response = await axios.put(`http://localhost:8080/api/students/edit/${student.id}`, student);
+      const response = await axios.put(`${process.env.REACT_APP_API_URL}/api/students/edit/${student.id}`, student);
       dispatch(editStudent(response.data));
     } catch (error) {
       console.error(error);
@@ -90,7 +90,7 @@ export const editStudentThunk = (student) => {
 export const deleteStudentThunk = (studentId) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`http://localhost:8080/api/students/delete/${studentId}`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/students/delete/${studentId}`);
       dispatch(deleteStudent(studentId));
     } catch (error) {
       console.error(error);
