@@ -23,10 +23,8 @@ const Campus = () => {
     fetchSingleCampus();
   }, [id]);
   const campusStudents = students.filter(student => student.campusId===parseInt(id));
-  console.log(campus.students[0]); 
   return ( 
-    <div>
-      <h1>Campus Page</h1>
+    <div className="text-center">
       <SingleCampus singleCampus={campus} students={campusStudents}/>
     </div>
   );

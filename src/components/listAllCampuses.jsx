@@ -14,12 +14,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 export default function ListAllCampuses({ allCampuses }) {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const deleteCampus = (campusId) => {
-    return dispatch(deleteCampusThunk(campusId));
+  const deleteCampus = (id) => {
+    return dispatch(deleteCampusThunk(id));
   };
 
-  const handleDelete = (campusId) => {
-    deleteCampus(campusId);
+  const handleDelete = (id) => {
+    deleteCampus(id);
   };
   return allCampuses.length !== 0 ? (
     <Row>
