@@ -42,17 +42,27 @@ const AddCampusForm = () => {
 
     const validateForm = () => {
         const errors = {};
+        const nameRegex = /^[a-zA-Z\s]+$/;
+        const addressRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d\s]+$/;
+      
         if (!formData.name.trim()) {
-            errors.name = "Campus name is required";
+          errors.name = "Campus name is required";
+        } else if (!nameRegex.test(formData.name)) {
+          errors.name = "Campus name can only contain letters and spaces";
         }
+      
         if (!formData.address.trim()) {
-            errors.address = "Campus address is required";
+          errors.address = "Campus address is required";
+        } else if (!addressRegex.test(formData.address)) {
+          errors.address = "Campus address must contain both numbers and letters";
         }
+      
         return errors;
-    };
+      };
+      
 
     return (
-        <div>
+        <div className="text-center">
             <h2>Add New Campus</h2>
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="name">
@@ -61,6 +71,7 @@ const AddCampusForm = () => {
                         type="text"
                         name="name"
                         value={formData.name}
+                        className="text-center"
                         onChange={handleChange}
                         isInvalid={validationErrors.name}
                     />
@@ -74,6 +85,7 @@ const AddCampusForm = () => {
                         type="text"
                         name="address"
                         value={formData.address}
+                        className="text-center"
                         onChange={handleChange}
                         isInvalid={validationErrors.address}
                     />
