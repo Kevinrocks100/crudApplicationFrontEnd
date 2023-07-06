@@ -43,7 +43,7 @@ export const fetchAllCampusesThunk = () => {
     try {
       console.log("FETCHALLCAMPUSESTHUNK IS FIRING");
       console.log(`${process.env.REACT_APP_API_URL}api/campuses`); 
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}api/campuses`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/campuses`);
       console.log("FETCHALLCAMPUSESTHUNK COMPLETED"); 
       dispatch(fetchAllCampuses(response.data));
     } catch (error) {
