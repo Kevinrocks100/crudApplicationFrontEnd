@@ -1,5 +1,4 @@
 import axios from "axios";
-
 import CampusesActionType from "./campuses.types";
 
 export const fetchAllCampuses = (payload) => {
@@ -43,7 +42,7 @@ export const fetchAllCampusesThunk = () => {
   return async (dispatch) => {
     try {
       console.log("FETCHALLCAMPUSESTHUNK IS FIRING");
-      const response = await axios.get("http://localhost:8080/api/campuses");
+      const response = await axios.get(`${process.env.REACT_APP_POSTGRES_URL}/api/campuses/`);
       console.log("FETCHALLCAMPUSESTHUNK COMPLETED"); 
       dispatch(fetchAllCampuses(response.data));
     } catch (error) {
@@ -56,7 +55,7 @@ export const fetchSingleCampusThunk = (campusId) =>{
   return async (dispatch)=>{
       try {
           console.log("FETCHSINGLECAMPUSTHUNK IS FIRING");
-          const response = await axios.get(`http://localhost:8080/api/campuses/${campusId}`);
+          const response = await axios.get(`${process.env.REACT_APP_POSTGRES_URL}/api/campuses/${campusId}`);
           console.log("FETCHSINGLECAMPUSTHUNK COMPLETED");
           dispatch(fetchSingleCampus(response.data));
       } catch (error) {
@@ -68,7 +67,7 @@ export const fetchSingleCampusThunk = (campusId) =>{
 export const createCampusThunk = (campus) => {
   return async (dispatch) => {
       try {
-          const response = await axios.post("http://localhost:8080/api/campuses/add", campus);
+          const response = await axios.post(`${process.env.REACT_APP_POSTGRES_URL}/api/campuses/add`, campus);
           dispatch(createCampus(response.data));
       } catch (error) {
           console.log(error); 
@@ -79,7 +78,7 @@ export const createCampusThunk = (campus) => {
 export const editCampusThunk = (campus) => {
   return async (dispatch) => {
     try {
-      const response = await axios.put(`http://localhost:8080/api/campuses/edit/${campus.id}`, campus);
+      const response = await axios.put(`${process.env.REACT_APP_POSTGRES_URL}/api/campuses/edit/${campus.id}`, campus);
       dispatch(editCampus(response.data));
     } catch (error) {
       console.error(error);
@@ -90,7 +89,7 @@ export const editCampusThunk = (campus) => {
 export const deleteCampusThunk = (campusId) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`http://localhost:8080/api/campuses/delete/${campusId}`);
+      await axios.delete(`${process.env.REACT_APP_POSTGRES_URL}/api/campuses/delete/${campusId}`);
       dispatch(deleteCampus(campusId));
     } catch (error) {
       console.error(error);

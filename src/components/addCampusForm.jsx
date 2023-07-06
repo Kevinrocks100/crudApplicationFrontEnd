@@ -34,7 +34,7 @@ const AddCampusForm = () => {
                 address: "",
             });
             setValidationErrors({});
-            navigate('/campuses');
+            // navigate('/campuses');
         } else {
             setValidationErrors(errors);
         }
