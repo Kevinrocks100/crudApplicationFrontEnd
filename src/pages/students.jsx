@@ -4,7 +4,7 @@ import { fetchAllStudentsThunk } from "../redux/students/students.actions";
 import ListAllStudents from "../components/listAllStudents";
 import { LinkContainer } from 'react-router-bootstrap';
 import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Students = () => {
@@ -21,8 +21,13 @@ const Students = () => {
   }, []);
 
   return ( 
-    <div>
+    <div className="text-center">
       <h1>All Students</h1>
+      <Button variant="primary">
+        <LinkContainer to="/students/add">
+          <Nav.Link>Add Student</Nav.Link>
+        </LinkContainer>
+      </Button>
       <ListAllStudents listStudents={allStudents} />
     </div>
   );

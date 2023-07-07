@@ -30,7 +30,7 @@ const EditStudent = ({studentId}) => {
   };
 
   return (
-    <div className="forms">
+    <div className="text-center">
       <h1 className="header">Edit Student</h1>
       <Form onSubmit={handleEditSubmit}>
         <Form.Group>
@@ -38,6 +38,7 @@ const EditStudent = ({studentId}) => {
           <Form.Control
             type="text"
             name="firstName"
+            className="text-center"
             value={editForm.firstName || ""}
             onChange={handleInputChange}
           />
@@ -47,6 +48,7 @@ const EditStudent = ({studentId}) => {
           <Form.Control
             type="text"
             name="lastName"
+            className="text-center"
             value={editForm.lastName || ""}
             onChange={handleInputChange}
           />
@@ -56,6 +58,7 @@ const EditStudent = ({studentId}) => {
           <Form.Control
             type="email"
             name="email"
+            className="text-center"
             value={editForm.email || ""}
             onChange={handleInputChange}
           />
@@ -65,6 +68,7 @@ const EditStudent = ({studentId}) => {
           <Form.Control
             type="text"
             name="imageUrl"
+            className="text-center"
             value={editForm.imageUrl || ""}
             onChange={handleInputChange}
           />
@@ -74,6 +78,7 @@ const EditStudent = ({studentId}) => {
           <Form.Control
             type="number"
             name="gpa"
+            className="text-center"
             value={editForm.gpa || ""}
             onChange={handleInputChange}
           />

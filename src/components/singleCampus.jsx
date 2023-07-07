@@ -14,6 +14,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export default function SingleCampus({ singleCampus, students }) {
   const dispatch = useDispatch();
   const { id } = useParams();
+
   const deleteCampus = (id) => {
     return dispatch(deleteCampusThunk(id));
   };
@@ -27,18 +28,26 @@ export default function SingleCampus({ singleCampus, students }) {
       <img src={singleCampus.imageUrl} alt={singleCampus.id} />
       <p>{singleCampus.address}</p>
       <p>{singleCampus.description}</p>
-      <Row>
-        <Col xs={12} md={6}>
-          <Button variant="primary">
-            <LinkContainer to={`/campuses/edit/${singleCampus.id}`}>
-              <Nav.Link>Edit</Nav.Link>
-            </LinkContainer>
-          </Button>
-        </Col>
-        <Col xs={12} md={6}>
-          <Button variant="primary" onClick={() => handleDelete(singleCampus.id)}>Delete</Button>
-        </Col>
-      </Row>
+      <div className="container-fluid">
+        <Row>
+          <Col xs={12} md={6}>
+            <Button variant="primary">
+              <LinkContainer to={`/campuses/edit/${singleCampus.id}`}>
+                <Nav.Link>Edit</Nav.Link>
+              </LinkContainer>
+            </Button>
+          </Col>
+          <Col xs={12} md={6}>
+            <Button variant="primary" onClick={() => handleDelete(singleCampus.id)}>Delete</Button>
+          </Col>
+        </Row>
+      </div>
+      <h2>Students on Campus</h2>
+      <Button variant="primary">
+        <LinkContainer to={{ pathname: "/students/add", search: `?campusId=${singleCampus.id}` }}>
+          <Nav.Link>Add Student</Nav.Link>
+        </LinkContainer>
+      </Button>
       <Row>
         {students.map((student) => (
           <Col key={student.id} xs={12} sm={6} md={4}>
@@ -63,13 +72,27 @@ export default function SingleCampus({ singleCampus, students }) {
     <div>
       <h1>{singleCampus.name}</h1>
       <img src={singleCampus.imageUrl} alt={singleCampus.id} />
-      <h3>{singleCampus.address}</h3>
+      <p>{singleCampus.address}</p>
       <p>{singleCampus.description}</p>
       <h2>Students on Campus</h2>
-      <p>Please Add Students to Campus!</p>
+      <p>There are no students currently registered to this campus. </p>
+      <div className="container-fluid">
+        <Row>
+          <Col xs={12} md={6}>
+            <Button variant="primary">
+              <LinkContainer to={`/campuses/edit/${singleCampus.id}`}>
+                <Nav.Link>Edit</Nav.Link>
+              </LinkContainer>
+            </Button>
+          </Col>
+          <Col xs={12} md={6}>
+            <Button variant="primary" onClick={() => handleDelete(singleCampus.id)}>Delete</Button>
+          </Col>
+        </Row>
+      </div>
       <Button variant="primary">
-        <LinkContainer to="/campuses/add">
-          <Nav.Link>Add Campus</Nav.Link>
+        <LinkContainer to={{ pathname: "/students/add", search: `?campusId=${singleCampus.id}` }}>
+          <Nav.Link>Add Student</Nav.Link>
         </LinkContainer>
       </Button>
     </div>

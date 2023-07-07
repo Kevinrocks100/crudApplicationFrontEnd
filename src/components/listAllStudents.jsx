@@ -18,37 +18,46 @@ export default function ListAllStudents({ listStudents }) {
   };
 
   const handleDelete = (studentId) => {
-      deleteStudent(studentId);
+    deleteStudent(studentId);
   }
 
   return listStudents.length !== 0 ? (
     <Row>
-    {listStudents.map((student) => (
-      <Col key={student.id} xs={12} sm={6} md={4}>
-        <Card className="text-center mb-4">
-          <Card.Img variant="top" src={student.imageUrl} alt={student.id} />
-          <Card.Body>
-            <Card.Title>
-              <LinkContainer to={`/students/${student.id}`}>
-                <a>{student.firstName} {student.lastName}</a>
-              </LinkContainer>
-            </Card.Title>
-            <Card.Text>
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </Card.Text>
-            <Button variant="primary" onClick={() => handleDelete(student.id)}>
-              Delete
-            </Button>
-          </Card.Body>
-        </Card>
-      </Col>
-    ))}
+      {listStudents.map((student) => (
+        <Col key={student.id} xs={12} sm={6} md={4}>
+          <Card className="text-center mb-4">
+            <Card.Img variant="top" src={student.imageUrl} alt={student.id} />
+            <Card.Body>
+              <Card.Title>
+                <LinkContainer to={`/students/${student.id}`}>
+                  <a>{student.firstName} {student.lastName}</a>
+                </LinkContainer>
+              </Card.Title>
+              <Card.Text>
+                <LinkContainer to={`/campuses/${student.campusId}`}>
+                  <a>{student.campusId}</a>
+                </LinkContainer>
+              </Card.Text>
+              <Row>
+                <Col xs={12} md={6}>
+                  <Button variant="primary">
+                    <LinkContainer to={`/students/edit/${student.id}`}>
+                      <Nav.Link>Edit</Nav.Link>
+                    </LinkContainer>
+                  </Button>
+                </Col>
+                <Col xs={12} md={6}>
+                  <Button variant="primary" onClick={() => handleDelete(student.id)}>Delete</Button>
+                </Col>
+              </Row>
+            </Card.Body>
+          </Card>
+        </Col>
+      ))}
     </Row>
   ) : (
     <div>
       <p>There are no students registered in the database.</p>
-      <Button variant="primary"><LinkContainer to="/students/add"><Nav.Link>Add Student</Nav.Link></LinkContainer></Button>
     </div>
   );
 }

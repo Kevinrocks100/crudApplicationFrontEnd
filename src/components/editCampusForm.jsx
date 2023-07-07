@@ -30,7 +30,7 @@ const EditCampus = () => {
   };
 
   return (
-    <div className="forms">
+    <div className="text-center">
       <h1 className="header">Edit Campus</h1>
       <Form onSubmit={handleEditSubmit}>
         <Form.Group>

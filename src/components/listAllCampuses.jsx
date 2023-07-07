@@ -22,37 +22,45 @@ export default function ListAllCampuses({ allCampuses }) {
     deleteCampus(id);
   };
   return allCampuses.length !== 0 ? (
-    <Row>
-      {allCampuses.map((campus) => (
-        <Col key={campus.id} xs={12} sm={6} md={4}>
-          <Card className="text-center">
-            <Card.Img variant="top" src={campus.imageUrl} alt={campus.name} />
-            <Card.Body>
-              <Card.Title>
-                <LinkContainer to={`/campuses/${campus.id}`}>
-                  <a>{campus.name}</a>
-                </LinkContainer>
-              </Card.Title>
-              <Card.Text>
-                {/* <p>{campus.students.length} students</p> */}
-              </Card.Text>
-              <Row>
-                <Col xs={12} md={6}>
-                  <Button variant="primary">
-                    <LinkContainer to={`/campuses/edit/${campus.id}`}>
-                      <Nav.Link>Edit</Nav.Link>
-                    </LinkContainer>
-                  </Button>
-                </Col>
-                <Col xs={12} md={6}>
-                  <Button variant="primary" onClick={() => handleDelete(campus.id)}>Delete</Button>
-                </Col>
-              </Row>
-            </Card.Body>
-          </Card>
-        </Col>
-      ))}
-    </Row>
+    <div className="container-fluid">
+      <Row>
+        {allCampuses.map((campus) => (
+          <Col key={campus.id} xs={12} sm={6} md={4}>
+            <Card className="text-center">
+              <Card.Img variant="top" src={campus.imageUrl} alt={campus.name} />
+              <Card.Body>
+                <Card.Title>
+                  <LinkContainer to={`/campuses/${campus.id}`}>
+                    <a>{campus.name}</a>
+                  </LinkContainer>
+                </Card.Title>
+                <Card.Text>
+                  {
+                    campus.students.length === 0 ? (
+                      <p>0 students</p>
+                    ) : (
+                      <p>{campus.students.length} students</p>
+                    )
+                  }
+                </Card.Text>
+                <Row>
+                  <Col xs={12} md={6}>
+                    <Button variant="primary">
+                      <LinkContainer to={`/campuses/edit/${campus.id}`}>
+                        <Nav.Link>Edit</Nav.Link>
+                      </LinkContainer>
+                    </Button>
+                  </Col>
+                  <Col xs={12} md={6}>
+                    <Button variant="primary" onClick={() => handleDelete(campus.id)}>Delete</Button>
+                  </Col>
+                </Row>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </div>
   ) : (
     <div>
       <p>There are no campuses registered in this database!</p>

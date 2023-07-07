@@ -10,7 +10,7 @@ const AddCampusForm = () => {
 
     const [formData, setFormData] = useState({
         name: "",
-        imageUrl: "jhshdf", 
+        imageUrl: "https://img.freepik.com/premium-vector/cartoon-urban-cityscape-with-college-academy-students-university-architecture-background_212168-968.jpg", 
         address: "",
         description: "shd"
     });
@@ -43,7 +43,7 @@ const AddCampusForm = () => {
     const validateForm = () => {
         const errors = {};
         const nameRegex = /^[a-zA-Z\s]+$/;
-        const addressRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d\s]+$/;
+        const addressRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d\s,]+$/;
       
         if (!formData.name.trim()) {
           errors.name = "Campus name is required";

@@ -1,20 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 import { addStudentThunk } from "../redux/students/students.actions";
 import { Form, Button } from "react-bootstrap";
 
 const AddStudentForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
-    imageUrl: "hshdjhf",
+    imageUrl: "https://img.freepik.com/premium-vector/cartoon-urban-cityscape-with-college-academy-students-university-architecture-background_212168-968.jpg",
     gpa: null,
+    campusId : null
   });
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const campusId = searchParams.get("campusId");
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      campusId: parseInt(campusId), // Set the campusId in the form data
+    }));
+  }, [location.search]);
 
   const [validationErrors, setValidationErrors] = useState({});
 
@@ -29,6 +41,7 @@ const AddStudentForm = () => {
     e.preventDefault();
     const errors = validateForm();
     if (Object.keys(errors).length === 0) {
+      console.log(formData); 
       dispatch(addStudentThunk(formData));
       setFormData({
         firstName: "",
@@ -56,7 +69,7 @@ const AddStudentForm = () => {
   };
 
   return (
-    <div>
+    <div className="text-center">
       <h2>Add Student</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="firstName">
@@ -64,6 +77,7 @@ const AddStudentForm = () => {
           <Form.Control
             type="text"
             name="firstName"
+            className="text-center"
             value={formData.firstName}
             onChange={handleChange}
             isInvalid={validationErrors.firstName}
@@ -77,6 +91,7 @@ const AddStudentForm = () => {
           <Form.Control
             type="text"
             name="lastName"
+            className="text-center"
             value={formData.lastName}
             onChange={handleChange}
             isInvalid={validationErrors.lastName}
@@ -90,6 +105,7 @@ const AddStudentForm = () => {
           <Form.Control
             type="email"
             name="email"
+            className="text-center"
             value={formData.email}
             onChange={handleChange}
             isInvalid={validationErrors.email}
