@@ -19,18 +19,23 @@ function App() {
   return (
     <Router>
       <Navbar bg="dark" data-bs-theme="dark">
-        <LinkContainer to="/"><Navbar.Brand>Home</Navbar.Brand></LinkContainer>
-        <Nav className="me-auto">
-          <LinkContainer to="/campuses">
-            <Nav.Link>Campuses</Nav.Link>
-          </LinkContainer>
-          <LinkContainer to="/students">
-            <Nav.Link>Students</Nav.Link>
-          </LinkContainer>
-        </Nav>
+        <LinkContainer to="/">
+          <Navbar.Brand>Home</Navbar.Brand>
+        </LinkContainer>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
-
+          <Nav className="me-auto">
+            <Nav.Item className="me-2">
+              <LinkContainer to="/campuses">
+                <Nav.Link>Campuses</Nav.Link>
+              </LinkContainer>
+            </Nav.Item>
+            <Nav.Item>
+              <LinkContainer to="/students">
+                <Nav.Link>Students</Nav.Link>
+              </LinkContainer>
+            </Nav.Item>
+          </Nav>
         </Navbar.Collapse>
       </Navbar>
       <Routes>

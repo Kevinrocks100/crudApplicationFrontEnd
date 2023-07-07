@@ -28,6 +28,18 @@
   color: #61dafb;
 }
 
+.home {
+  background-image: url("https://t4.ftcdn.net/jpg/04/22/24/49/360_F_422244902_ulvbCnVfyp7Wo0qbX4cntEIaOR4n8VVt.jpg");
+  background-size: 100% 100%;
+  background-position: center;
+  margin: 0;
+  padding: 0;
+  height: 91vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
